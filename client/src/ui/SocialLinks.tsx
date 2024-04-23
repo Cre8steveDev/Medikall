@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const SocialLinks = () => {
   return (
-    <div className="flex gap-3 mt-3">
+    <div className="flex gap-3 mt-3 mb-5 md:mb-0">
       <Link
         to="www.facebook.com"
         title="Medikal on Facebook"
