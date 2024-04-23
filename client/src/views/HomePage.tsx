@@ -1,11 +1,11 @@
-// Define Home View on load
+import HeroSection from '../ui/HeroSection';
 
+// Define Home View on load
 const HomePage = () => {
   return (
-    <div>
-      <h1>Yaaaay! This is the UI Component 😎</h1>
-      <p>Let's have some parteey! 🥳</p>
-    </div>
+    <section className="w-full">
+      <HeroSection />
+    </section>
   );
 };
 
