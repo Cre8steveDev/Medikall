@@ -21,7 +21,14 @@ const HeroSection = () => {
 
   // Handle Return of JSX
   return (
-    <section className="w-full md:h-[calc(100vh-10px)] bg-secondary-blue">
+    <section
+      className="w-full md:h-[calc(100vh-10px)]"
+      style={{
+        backgroundImage: "url('/images/hero_background.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <div
         className={`${maxWidthClassSettings} flex flex-col gap-2 items-center justify-center md:h-full overflow-x-hidden overflow-y-scroll`}
       >

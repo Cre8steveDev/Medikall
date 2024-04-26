@@ -1,6 +1,7 @@
 import BrowseByCategories from '../ui/BrowseByCategories';
 import HeroSection from '../ui/HeroSection';
 import OurServiceOfferings from '../ui/OurServiceOfferings';
+import AboutUsSection from '../ui/AboutUsSection';
 
 // Define Home View on load
 const HomePage = () => {
@@ -9,6 +10,7 @@ const HomePage = () => {
       <HeroSection />
       <OurServiceOfferings />
       <BrowseByCategories />
+      <AboutUsSection />
     </section>
   );
 };
