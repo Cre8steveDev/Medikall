@@ -10,6 +10,7 @@ type TFormData = {
   genotype?: string;
   phone_number: string;
   password: string;
+  confirm_password: string;
   gender: string;
 }
 
@@ -42,8 +43,15 @@ const SignUpPage = () => {
 
       <input name="full_name" placeholder="Enter Your Full Name" required value={formData.full_name} className="" minLength=8 maxLength=30 />
       <input name="email" placeholder="Enter Email Address" type="email" required value={formData.email} className="" minLength=8 />
-      <input name="phone_number" placeholder="Enter Phone Number (081234...)" type="tel" required value={formData.phone_number} className="" />
-      <input name="password" placeholder="Use a Secured Password" type="password" required value={formData.full_name} className="" minLength=8 maxLength=30 />
+      <input name="phone_number" placeholder="Enter Phone Number (081234...)" type="text" required value={formData.phone_number} className="" minLength=11 maxLength=11/>
+      <input name="date_of_birth" placeholder="Date of Birth" type="date" required value={formData.date_of_birth} className="" minLength=8 maxLength=30 />
+      <input name="password" placeholder="Use a Secured Password" type="password" required value={formData.password} className="" minLength=8 maxLength=30 />
+      <input name="confirm_password" placeholder="Confirm Your Password" type="password" required value={formData.confirm_password} className="" minLength=8 maxLength=30 />
+
+      <button>
+        {formLoading? <p>Registration in Progress </p> : <p>Sign Up Now</p>}
+      </button>
+      
 
           
     </form>
