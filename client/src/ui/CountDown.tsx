@@ -28,12 +28,14 @@ const CountDown: React.FC<CountDownProps> = ({
   }, [count, number]);
 
   return (
-    <div className="bg-white max-w-fit p-3 rounded-xl">
-      <p className="text-3xl font-black text-gray-700">
+    <div className="bg-white md:bg-transparent max-w-fit p-3 rounded-xl flex flex-col justify-center">
+      <p className="text-lg  md:text-3xl font-black text-gray-700">
         {count}
         {numberLettering}
       </p>
-      <p className="text-[14px] font-bold text-gray-500">{subtitle}</p>
+      <p className="text-xs md:text-[14px] md:font-bold text-gray-500">
+        {subtitle}
+      </p>
     </div>
   );
 };
