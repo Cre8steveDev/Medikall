@@ -47,7 +47,7 @@ const MobileNavBar = ({
 
       {showNavMenu && (
         <ul
-          className="bg-white z-10 flex flex-col gap-4 w-full min-h-screen h-screen fixed top-0 left-0 p-16 justify-center items-center bg-opacity-35 backdrop-blur-lg text-[18px]"
+          className="bg-white z-30 flex flex-col gap-4 w-full min-h-screen h-screen fixed top-0 left-0 p-16 justify-center items-center backdrop-blur-xl  text-[18px]"
           onClick={() => setShowNavMenu(false)}
         >
           <li
