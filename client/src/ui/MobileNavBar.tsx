@@ -3,30 +3,35 @@ import { IoCloseCircle } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { signOut } from '../redux/slice/userSlice';
+import { notifyError } from './notifications';
+import { TUserContext } from '../types/generalTypes';
+
 // DesktopNavigation Bar
 
-const MobileNavBar = ({
-  user,
-  setUser,
-}: {
-  user: boolean;
-  setUser: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const MobileNavBar = ({ user }: { user: TUserContext | null }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showNavMenu, setShowNavMenu] = useState(false);
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     // Implement signOut Logic
+    try {
+      await fetch('/api/auth/logout');
+      dispatch(signOut());
+    } catch (error) {
+      notifyError('Error connecting to server. Local state cleared');
+    }
+
     setShowNavMenu(false);
-    setUser(false);
     navigate('/');
   };
 
   const handleSignIn = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     e.preventDefault();
     setShowNavMenu(false);
-    setUser(true);
-    navigate('/');
+    navigate('/sign-in');
   };
 
   const handleMenuNavigate = (route: string) => {

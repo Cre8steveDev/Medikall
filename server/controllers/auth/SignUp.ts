@@ -27,7 +27,7 @@ const SignUp = async (req: Request, res: Response, next: NextFunction) => {
     console.log(newWallet);
 
     // hash password before saving to db
-    const salt = bcryptjs.genSaltSync(16);
+    const salt = bcryptjs.genSaltSync(10);
     const hashedPassword = bcryptjs.hashSync(password, salt);
 
     // Create New User
