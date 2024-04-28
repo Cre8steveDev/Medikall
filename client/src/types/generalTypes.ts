@@ -23,3 +23,10 @@ export type TUserContext = {
   blood_group: string;
   gender: string;
 };
+
+export type TChatFormat = {
+  role: string;
+  message: string;
+  date: string;
+  photo_url: string;
+};

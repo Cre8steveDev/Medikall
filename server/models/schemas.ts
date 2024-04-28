@@ -27,7 +27,7 @@ const chatSchema = new Schema(
   {
     userId: { type: ObjectId, ref: 'Users' },
     title: String,
-    messages: [{ role: String, content: String }],
+    messages: [{ role: String, content: String, date: String }],
   },
   { timestamps: true }
 );
