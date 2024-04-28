@@ -3,6 +3,7 @@ import { maxWidthClassSettings } from '../lib/constants';
 import CountDown from './CountDown';
 
 import { FaArrowAltCircleDown } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 // Hero Section
 
@@ -52,12 +53,16 @@ const HeroSection = () => {
 
             {/* Call To Action */}
             <div className="flex flex-col md:flex-row md:gap-4 md:mb-12 items-center">
-              <button className="mt-3 rounded-md bg-primary-green p-3 md:p-2 lg:p-5 text-white font-bold hover:bg-opacity-70 max-w-[400px]">
-                Book An Appointment
-              </button>
-              <button className="mt-3 rounded-md bg-primary-blue p-3 md:p-2 lg:p-5 text-white font-bold hover:bg-opacity-70 max-w-[400px]">
-                Chat with MediDoc 😇
-              </button>
+              <Link to="/book-appointment">
+                <button className="mt-3 rounded-md bg-primary-green p-3 md:p-2 lg:p-5 text-white font-bold hover:bg-opacity-70 max-w-[400px]">
+                  Book An Appointment
+                </button>
+              </Link>
+              <Link to="/medidoc-chat">
+                <button className="mt-3 rounded-md bg-primary-blue p-3 md:p-2 lg:p-5 text-white font-bold hover:bg-opacity-70 max-w-[400px]">
+                  Chat with MediDoc 😇
+                </button>
+              </Link>
             </div>
 
             {/* Stats */}

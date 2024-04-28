@@ -10,5 +10,5 @@ export const notifyError = (message: string) => {
 };
 
 export const notifyInfo = (message: string) => {
-  return toast.info(message, { position: 'bottom-right' });
+  return toast.info(message, { position: 'top-right' });
 };

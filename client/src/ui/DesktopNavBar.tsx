@@ -1,34 +1,36 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../redux/slice/userSlice';
+import { notifyError } from './notifications';
+import { TUserContext } from '../types/generalTypes';
 
 // DesktopNavigation Bar
 
-const DesktopNavBar = ({
-  user,
-  setUser,
-}: {
-  user: boolean;
-  setUser: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const DesktopNavBar = ({ user }: { user: TUserContext | null }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     // Implement signOut Logic
-    setUser(false);
+    try {
+      await fetch('/api/auth/logout');
+      dispatch(signOut());
+    } catch (error) {
+      notifyError('Error connecting to server. Local state cleared');
+    }
+
     navigate('/');
   };
 
   const handleSignIn = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     e.preventDefault();
-
-    setUser(true);
-    navigate('/');
+    navigate('/sign-in');
   };
+
+  // Return JSX
   return (
     <nav className="hidden lg:block">
       <ul className="flex gap-4">
-        {/* <Link to="/">
-	  <li>Home</li>
-	</Link> */}
         <Link to={'/departments'}>
           <li
             className={

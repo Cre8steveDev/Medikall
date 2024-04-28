@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { notifyError, notifySuccess } from '../ui/notifications';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signInSuccess } from '../redux/slice/userSlice';
 
 type TSignInFormData = {
   email: string;
@@ -18,12 +20,12 @@ const initialFormData: TSignInFormData = {
 
 const SignInPage = () => {
   const [formData, setFormData] = useState(initialFormData);
-
   // Form States
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleFormValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (formLoading || formError) {
@@ -34,22 +36,38 @@ const SignInPage = () => {
     setFormData((form_data) => {
       return { ...form_data, [e.target.name]: e.target.value };
     });
-
-    console.log(formData);
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormLoading(true);
 
     try {
-      if (!formData.password) {
-        throw new Error('Passwords do not match!');
-      }
+      // Clean Data before sending
+      const cleanedData = {
+        email: formData.email.toLowerCase(),
+        date_of_birth: formData.date_of_birth,
+        password: formData.password.trim(),
+      };
+
+      const response = await fetch('/api/auth/signin', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cleanedData),
+      });
+
+      if (!response.ok) throw new Error('Invalid Login Details');
       // on Success
+      const data = await response.json();
+      console.log(data);
+      console.log('User Response above');
+      dispatch(signInSuccess(data));
+
       setFormLoading(false);
-      notifySuccess('Registration Successful! 😊');
-      navigate('/login');
+      notifySuccess('Login Successful! 😊');
+      navigate('/');
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: { message: string } | any) {
@@ -124,11 +142,11 @@ const SignInPage = () => {
 
           <button
             disabled={formLoading}
-            className={`${formLoading ? 'animate-pulse' : ''}`.concat(
-              'w-full p-4 bg-primary-green rounded-xl text-white font-extrabold uppercase hover:bg-opacity-65 cursor-pointer transition ease-in duration-300 disabled:cursor-not-allowed'
-            )}
+            className={`${
+              formLoading ? 'animate-pulse' : ''
+            } w-full p-4 bg-primary-green rounded-xl text-white font-extrabold uppercase hover:bg-opacity-65 cursor-pointer transition ease-in duration-300 disabled:cursor-not-allowed`}
           >
-            {formLoading ? <p>Logging In </p> : <p>Log In</p>}
+            {formLoading ? <p>Logging In...😃 </p> : <p>Log In</p>}
           </button>
           <Link to={'/sign-up'}>
             <p className="text-sm text-center text-primary-blue mt-4">

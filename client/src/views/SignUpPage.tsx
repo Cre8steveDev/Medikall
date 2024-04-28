@@ -46,11 +46,9 @@ const SignUpPage = () => {
     setFormData((form_data) => {
       return { ...form_data, [e.target.name]: e.target.value };
     });
-
-    console.log(formData);
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormLoading(true);
 
@@ -58,10 +56,35 @@ const SignUpPage = () => {
       if (formData.password !== formData.confirm_password) {
         throw new Error('Passwords do not match!');
       }
+
+      // Clean Data before sending
+      const cleanedData = {
+        full_name: formData.full_name.trim(),
+        email: formData.email.toLowerCase(),
+        date_of_birth: formData.date_of_birth,
+        blood_group: formData.blood_group!.trim(),
+        genotype: formData.genotype?.trim(),
+        gender: formData.gender,
+        phone_number: formData.phone_number,
+        password: formData.password.trim(),
+      };
       // on Success
-      setFormLoading(false);
-      notifySuccess('Registration Successful! 😊');
-      navigate('/sign-in');
+      const response = await fetch('/api/auth/signup', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cleanedData),
+      });
+
+      if (response.ok) {
+        setFormLoading(false);
+        notifySuccess('Registration Successful! 😊');
+        navigate('/sign-in');
+
+        return;
+      }
+      throw new Error('An Error occured with Registration. Try Again');
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: { message: string } | any) {
@@ -223,9 +246,9 @@ const SignUpPage = () => {
 
           <button
             disabled={formLoading}
-            className={`${formLoading ? 'animate-pulse' : ''}`.concat(
-              'w-full p-4 bg-primary-green rounded-xl text-white font-extrabold uppercase hover:bg-opacity-65 cursor-pointer transition ease-in duration-300 disabled:cursor-not-allowed'
-            )}
+            className={`${
+              formLoading ? 'animate-pulse' : ''
+            } w-full p-4 bg-primary-green rounded-xl text-white font-extrabold uppercase hover:bg-opacity-65 cursor-pointer transition ease-in duration-300 disabled:cursor-not-allowed`}
           >
             {formLoading ? (
               <p>Registration in Progress </p>
