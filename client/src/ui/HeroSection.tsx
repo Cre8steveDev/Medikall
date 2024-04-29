@@ -110,7 +110,7 @@ const HeroSection = () => {
                   className="absolute w-[80px] h-[80px] -right-[35px] animate-ping"
                 />
 
-                <div className="rounded-full  md:h-[320px] md:w-[320px] lg:h-[500px] lg:w-[500px] h-[240px] w-[240px] bg-primary-green overflow-hidden justify-center">
+                <div className="rounded-full  md:h-[320px] md:w-[320px] lg:h-[500px] lg:w-[500px] h-[240px] w-[240px] bg-gradient-to-tr from-primary-blue to-primary-green  overflow-hidden justify-center">
                   <img
                     src="/images/doctor01.png"
                     alt="Doctor Image"
@@ -129,10 +129,10 @@ const HeroSection = () => {
                     className={
                       `${
                         showFemaleDoc
-                          ? 'opacity-100 -translate-y-[130%]'
+                          ? 'opacity-100 -translate-y-[140%]'
                           : 'opacity-0'
                       }` +
-                      ' object-contain w-full transition ease-in duration-500'
+                      ' object-contain w-[90%] transition ml-5 ease-in duration-500'
                     }
                   />
                 </div>

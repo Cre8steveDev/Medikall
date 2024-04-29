@@ -46,7 +46,7 @@ const SubscribeNewsletter = () => {
     <div
       className={`${maxWidthClassSettings}  bg-primary-blue flex md:flex-row flex-col gap-3 p-5 rounded-3xl justify-center items-center shadow-2xl -translate-y-16`}
     >
-      <h2 className="text-white text-xl text-center font-bold w-full">
+      <h2 className="text-white xs:text-xl text-center font-bold w-full">
         Subscribe to our Exclusive Newsletter
       </h2>
 

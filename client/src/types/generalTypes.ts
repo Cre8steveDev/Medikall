@@ -30,3 +30,10 @@ export type TChatFormat = {
   date: string;
   photo_url: string;
 };
+
+export type TChatsList = {
+  _id: string;
+  userId: string;
+  title: string;
+  messages: TChatFormat[];
+};

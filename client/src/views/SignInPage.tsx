@@ -57,12 +57,10 @@ const SignInPage = () => {
         },
         body: JSON.stringify(cleanedData),
       });
-
+      if (response.status === 500) throw new Error('Connection Error. 🫠');
       if (!response.ok) throw new Error('Invalid Login Details');
       // on Success
       const data = await response.json();
-      console.log(data);
-      console.log('User Response above');
       dispatch(signInSuccess(data));
 
       setFormLoading(false);
@@ -87,12 +85,16 @@ const SignInPage = () => {
       }}
       className="h-full w-full flex justify-center items-center"
     >
-      <div className="bg-white p-5 my-10 md:p-10 rounded-2xl shadow-2xl shadow-gray-400 w-[90%] max-w-[500px]">
+      <div className="bg-white p-5 my-10 md:p-10 rounded-2xl shadow-2xl shadow-gray-400 w-[90%] max-w-[500px] animate-fade-in">
         {/* Define Form input here */}
-        <form method="post" onSubmit={handleFormSubmit}>
+        <form
+          method="post"
+          onSubmit={handleFormSubmit}
+          className="text-sm xs:text-base"
+        >
           {/* Form Header */}
-          <h1 className="text-2xl md:text-3xl text-center font-black text-primary-blue">
-            Welcome Again. Login To your Account
+          <h1 className="text-2xl md:text-3xl text-center font-black text-primary-blue mb-3">
+            Login To your Account
           </h1>
           <p className="text-xs sm:text-sm text-center text-slate-700 mb-7">
             Book Appointments, access your dashboard and enjoy convenience.

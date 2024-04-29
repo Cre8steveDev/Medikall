@@ -1,4 +1,4 @@
-import { TServiceForCarousel } from '../types/generalTypes';
+import { TChatsList, TServiceForCarousel } from '../types/generalTypes';
 import { MdPhonelink } from 'react-icons/md';
 import { FaHospitalUser } from 'react-icons/fa6';
 import { AiOutlineMedicineBox } from 'react-icons/ai';
@@ -116,3 +116,120 @@ export const BrowseCategories: TCategoryForCarousel[] = [
     icon: '/icons/pregnancy.png',
   },
 ];
+
+export const SampleChatsList: TChatsList[] = [];
+// export const SampleChatsList: TChatsList[] = [
+//   {
+//     _id: '48930485748390hjkdfjhdj',
+//     userId: '474892739239872fda',
+//     title: 'Learning about Health',
+//     messages: [
+//       {
+//         role: 'assistant',
+//         message: 'Hello, how can I help you today',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/doctor-avatar.jpg',
+//       },
+//       {
+//         role: 'user',
+//         message: 'I Need an advice from you',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/profile.jpeg',
+//       },
+//       {
+//         role: 'assistant',
+//         message: 'Spill it out, always happy to help.',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/doctor-avatar.jpg',
+//       },
+//       {
+//         role: 'user',
+//         message: 'Thank you thank you!',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/profile.jpeg',
+//       },
+//       {
+//         role: 'assistant',
+//         message: 'Hello, how can I help you today',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/doctor-avatar.jpg',
+//       },
+//     ],
+//   },
+
+//   {
+//     _id: 'dkfalsdacealkshjdf',
+//     userId: '474892739239872fda',
+//     title: 'Teach me about bioinfomatics',
+//     messages: [
+//       {
+//         role: 'assistant',
+//         message: 'Hello, how can I help you today',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/doctor-avatar.jpg',
+//       },
+//       {
+//         role: 'user',
+//         message: 'I want to learn about bioinformatics',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/profile.jpeg',
+//       },
+//       {
+//         role: 'assistant',
+//         message: 'Spill it out, always happy to help.',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/doctor-avatar.jpg',
+//       },
+//       {
+//         role: 'user',
+//         message: 'Thank you thank you!',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/profile.jpeg',
+//       },
+//       {
+//         role: 'assistant',
+//         message: 'Lorem ipsum set idolot episcum bal bldkch',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/doctor-avatar.jpg',
+//       },
+//     ],
+//   },
+
+//   {
+//     _id: '78909890jkjkmnikfgsd',
+//     userId: '474892739239872fda',
+//     title: 'Remedy for Migraines',
+//     messages: [
+//       {
+//         role: 'assistant',
+//         message: 'Hello, how can I help you today',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/doctor-avatar.jpg',
+//       },
+//       {
+//         role: 'user',
+//         message: 'Guess who has his mojo back on',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/profile.jpeg',
+//       },
+//       {
+//         role: 'assistant',
+//         message: 'Spill it out, always happy to help.',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/doctor-avatar.jpg',
+//       },
+//       {
+//         role: 'user',
+//         message: 'Thank you thank you!',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/profile.jpeg',
+//       },
+//       {
+//         role: 'assistant',
+//         message: 'Say No more! Abracadabra',
+//         date: new Date().toLocaleDateString(),
+//         photo_url: '/images/doctor-avatar.jpg',
+//       },
+//     ],
+//   },
+// ];

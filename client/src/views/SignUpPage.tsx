@@ -77,6 +77,8 @@ const SignUpPage = () => {
         body: JSON.stringify(cleanedData),
       });
 
+      if (response.status === 500) throw new Error('Connection Error. 🫠');
+
       if (response.ok) {
         setFormLoading(false);
         notifySuccess('Registration Successful! 😊');
@@ -84,7 +86,9 @@ const SignUpPage = () => {
 
         return;
       }
-      throw new Error('An Error occured with Registration. Try Again');
+      throw new Error(
+        'An Error occured with Registration. Credentials might already exist'
+      );
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: { message: string } | any) {
@@ -104,11 +108,15 @@ const SignUpPage = () => {
       }}
       className="h-full w-full flex justify-center items-center"
     >
-      <div className="bg-white p-5 my-10 md:p-10 rounded-2xl shadow-2xl shadow-gray-400 w-[90%] max-w-[500px]">
+      <div className="bg-white p-5 sm:p-8 my-10 md:p-10 rounded-2xl shadow-2xl shadow-gray-400 w-[90%] max-w-[500px] animate-fade-in">
         {/* Define Form input here */}
-        <form method="post" onSubmit={handleFormSubmit}>
+        <form
+          method="post"
+          onSubmit={handleFormSubmit}
+          className="text-sm xs:text-base"
+        >
           {/* Form Header */}
-          <h1 className="text-2xl md:text-3xl text-center font-black text-primary-blue">
+          <h1 className="text-2xl mb-3 md:text-3xl text-center font-black text-primary-blue">
             Register An Account to Use our Full Features
           </h1>
           <p className="text-xs sm:text-sm text-center text-slate-700 mb-7">

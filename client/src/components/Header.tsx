@@ -18,7 +18,7 @@ const Header = () => {
   );
 
   return (
-    <header className="w-full p-5 h-[90px] flex flex-col justify-center shadow-xl shadow-slate-200 sticky top-0 z-10 backdrop-blur-2xl">
+    <header className="w-full p-5 h-[60px] sm:h-[90px] flex flex-col justify-center shadow-xl shadow-slate-200 sticky top-0 z-10 backdrop-blur-2xl">
       <div
         className={
           `${maxWidthClassSettings}` + 'flex justify-between items-center'

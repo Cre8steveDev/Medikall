@@ -7,8 +7,8 @@ import UserMessage from './UserMessage';
 import handleUserSendMessage from '../lib/handleUserSendMessage';
 import LoadingBotResponse from './LoadingBotResponse';
 import ErrorBotResponse from './ErrorBotResponse';
-import { notifyInfo } from './notifications';
 import chatAPI from '../lib/getAIResponseToUserMessage';
+import { notifySuccess } from './notifications';
 
 /**
  * Represents the public chat page component.
@@ -35,10 +35,15 @@ const PublicChatPage = () => {
   //  Clear current chat session
   const handleClearChat = () => {
     setChats([botWelcome]);
+    notifySuccess('Your Current Chatting Session has been cleared.');
     setLoadingResponse(false);
   };
 
   useEffect(() => {
+    // Scroll down the footer for mobile keyboard scrolling the screen
+    window.scrollTo(0, 0);
+
+    // Check that user sent a response and input greater than 4
     if (!userSentResponse || inputMessage.length < 4) return;
 
     handleUserSendMessage(inputMessage, setChats);
@@ -60,6 +65,7 @@ const PublicChatPage = () => {
           return [...prev, aiResponseObject as TChatFormat];
         });
       }
+
       setLoadingResponse(false);
       setUserSentResponse(false);
     });
@@ -77,8 +83,6 @@ const PublicChatPage = () => {
   // handle verification of user submitting entry
   const handleSubmissionValidation = () => {
     if (userSentResponse) return;
-    if (inputMessage.length < 4)
-      return notifyInfo('You need to type in a message.');
     setUserSentResponse(true);
   };
 
@@ -89,6 +93,7 @@ const PublicChatPage = () => {
 
       const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === 'Enter') {
+          event.preventDefault();
           handleSubmissionValidation();
         }
       };
@@ -105,25 +110,25 @@ const PublicChatPage = () => {
 
   // Return JSX
   return (
-    <div className="w-full max-w-[700px] mx-auto my-10 rounded-2xl shadow-xl flex flex-col justify-center h-full overflow-x-hidden ">
-      <section className="w-full bg-secondary-blue p-6 flex justify-between">
+    <div className="w-full max-w-[700px] mx-auto sm:my-10 rounded-2xl shadow-xl flex flex-col justify-center h-full overflow-x-hidden animate-fade-in">
+      <section className="w-full bg-secondary-blue p-3 sm:p-6 flex justify-between">
         <div className="flex gap-4 items-center w-full">
           <img
             src="/images/doctor-avatar.jpg"
             alt="MediDoc"
-            className="rounded-full w-[60px]"
+            className="rounded-full w-[35px] sm:w-[60px] "
           />
           <div>
-            <p className="text-lg font-bold text-slate-700">MediDoc | AI</p>
+            <p className="sm:text-lg font-bold text-slate-700">MediDoc | AI</p>
             <div className="flex text-primary-green font-bold items-center gap-3">
-              <p>Online</p>
+              <p className="text-xs sm:text-sm">Online</p>
               <div className="w-[10px] h-[10px] bg-primary-green rounded-full animate-ping"></div>{' '}
             </div>
           </div>
         </div>
 
         <div
-          className="self-center text-2xl text-red-600 hover:text-red-500 w-[40px] cursor-pointer transition ease-in p-3"
+          className="self-center text-xl sm:text-2xl text-red-600 hover:text-red-500 w-[40px] cursor-pointer transition ease-in p-3"
           title="Delete Chat"
           onClick={handleClearChat}
         >
@@ -134,7 +139,7 @@ const PublicChatPage = () => {
       {/* Chat Container */}
       <div
         ref={scrollingDivRef}
-        className="w-full h-[550px] overflow-x-hidden overflow-y-scroll bg-opacity-25 p-5 md:p-10 flex flex-col gap-5 bg-scroll"
+        className="w-full h-[55vh] xs:h-[70vh]  sm:h-[550px] overflow-x-hidden overflow-y-scroll bg-opacity-25 p-5 md:p-10 flex flex-col gap-5 bg-scroll"
         style={{
           backgroundImage: "url('/images/chat-background.jpg')",
           backgroundSize: 'cover',
@@ -155,19 +160,19 @@ const PublicChatPage = () => {
       </div>
 
       {/* Input and Submit Button */}
-      <div className="w-full bg-white h-[100px] py-3 px-8 flex justify-between gap-3">
+      <div className="w-full bg-white sm:h-[80px] py-3 px-3 md:px-8 flex justify-between gap-3">
         <input
-          type="search"
+          type="text"
           name="Message_Field"
           ref={inputFieldRef}
           placeholder="Type your message here..."
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
-          className="w-full outline-0 text-lg text-slate-700"
+          className="w-full outline-0 text-xs sm:text-lg text-slate-700"
         />
         <button
           type="button"
-          disabled={userSentResponse}
+          disabled={userSentResponse || inputMessage.length < 4}
           className={`flex items-center gap-2 text-xl font-bold text-white bg-primary-green p-3 rounded-lg hover:bg-opacity-85 cursor-pointer self-center disabled:cursor-not-allowed disabled:bg-opacity-40`}
           onClick={() => {
             handleSubmissionValidation();

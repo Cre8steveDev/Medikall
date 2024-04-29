@@ -21,13 +21,13 @@ const AboutUsSection = () => {
           </h2>
           <h3 className="text-2xl text-primary-blue mb-2">SINCE 2024</h3>
 
-          <p className="pr-3 text-justify mb-5 text-slate-700">
+          <p className="pr-3 text-justify mb-5 text-slate-700 sm:text-base text-xs">
             Medikall is a revolutionary web app designed to streamline the
             healthcare experience for both patients and doctors. Our
             user-friendly platform allows you to conveniently book appointments
             with qualified doctors from the comfort of your home.
           </p>
-          <p className="pr-3 text-justify mb-5 text-slate-700">
+          <p className="pr-3 text-justify mb-5 text-slate-700 sm:text-base text-xs">
             We understand the importance of efficient communication and
             preparation for consultations. That's why Medikall incorporates a
             smart chatbot that guides you through a series of preliminary
