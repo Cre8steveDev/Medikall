@@ -52,8 +52,12 @@ const doctorSchema = new Schema(
 const appointmentSchema = new Schema(
   {
     userId: { type: ObjectId, ref: 'Users', required: true },
+    occupation: String,
     department: { type: String, required: true },
     assigned_doctor: { type: ObjectId, ref: 'Doctors' },
+    assigned_appointment_date: String,
+    assigned_appointment_time: String,
+    assigned_appointment_room: Number,
     user_medical_history: [{ type: ObjectId, ref: 'Chats' }],
     status: {
       type: String,

@@ -62,6 +62,7 @@ const SignInPage = () => {
       // on Success
       const data = await response.json();
       dispatch(signInSuccess(data));
+      console.log(data);
 
       setFormLoading(false);
       notifySuccess('Login Successful! 😊');
