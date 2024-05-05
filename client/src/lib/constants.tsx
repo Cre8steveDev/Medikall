@@ -233,3 +233,14 @@ export const SampleChatsList: TChatsList[] = [];
 //     ],
 //   },
 // ];
+
+export const departments = [
+  'Cardiology',
+  'Neurology',
+  'Orthopedics',
+  'Radiology',
+];
+const today = new Date();
+export const dateString = `${today.getFullYear()}-${String(
+  today.getMonth() + 1
+).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;

@@ -1,7 +1,11 @@
 // Book Appointment Page Component
 import { MdAutoDelete } from 'react-icons/md';
 import { IoSendSharp } from 'react-icons/io5';
-import { TChatFormat, TUserContext } from '../types/generalTypes';
+import {
+  TAppointmentData,
+  TChatFormat,
+  TUserContext,
+} from '../types/generalTypes';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -13,24 +17,13 @@ import LoadingBotResponse from '../ui/LoadingBotResponse';
 import ErrorBotResponse from '../ui/ErrorBotResponse';
 import chatAPI from '../lib/getAIResponseToUserMessage';
 import { notifySuccess } from '../ui/notifications';
+import AppointmentForm from '../ui/AppointmentForm';
+import AppointmentFormNav from '../ui/AppointmentFormNav';
 
 /**
  * Represents Appointment Booking
  * This component for the workflow for booking an appointment on the front end
  */
-
-export type TAppointmentData = {
-  occupation: string;
-  preferred_date: string;
-  department: string;
-  medical_history: TChatFormat[];
-};
-
-const departments = ['Cardiology', 'Neurology', 'Orthopedics', 'Radiology'];
-const today = new Date();
-const dateString = `${today.getFullYear()}-${String(
-  today.getMonth() + 1
-).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
 const BookAppointmentPage = () => {
   const user: TUserContext | null = useSelector(
@@ -114,6 +107,10 @@ const BookAppointmentPage = () => {
     if (scrollingDivRef.current) {
       scrollingDivRef.current.scrollTop = scrollingDivRef.current.scrollHeight;
     }
+    // Update Appointment message history array
+    setAppointmentData((prev) => {
+      return { ...prev, medical_history: chats };
+    });
   }, [chats]);
 
   // handle verification of user submitting entry
@@ -152,10 +149,12 @@ const BookAppointmentPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!user) {
-    navigate('/sign-in');
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate('/sign-in');
+      return;
+    }
+  }, [navigate, user]);
 
   // Return JSX
   return (
@@ -180,69 +179,16 @@ const BookAppointmentPage = () => {
       </section>
 
       {!showChat && (
-        <div className="w-full max-w-[500px] mx-auto sm:mb-10 rounded-2xl shadow-xl flex flex-col justify-center items-center h-fit py-8 overflow-x-hidden">
-          <h2 className="text-2xl font-bold text-primary-blue">
-            Let's Get you Started
-          </h2>
-          <p className="text-xs mb-4 text-slate-700">
-            Please follow the steps to book your appointment.
-          </p>
-          <input
-            name="occupation"
-            placeholder="What is your Occupation?"
-            required
-            value={appointmentData.occupation}
-            className="w-full max-w-[400px] p-3 outline-none  valid:bg-secondary-green rounded-lg mb-3 border-[1px] text-slate-800"
-            minLength={8}
-            maxLength={40}
-            onChange={handleFormValueChange}
-          />
-
-          <label
-            htmlFor="date"
-            className="w-full max-w-[400px] p-2 text-slate-600"
-          >
-            <p className="">Preferred Date:</p>
-          </label>
-          <input
-            id="date"
-            name="preferred_date"
-            placeholder="Preferred Date"
-            required
-            type="date"
-            min={dateString}
-            value={appointmentData.preferred_date}
-            className="w-full max-w-[400px] p-3 outline-none  valid:bg-secondary-green rounded-lg mb-3 border-[1px] text-slate-800"
-            onChange={handleFormValueChange}
-          />
-
-          <label
-            htmlFor="department"
-            className="w-full max-w-[400px] p-2 text-slate-600"
-          >
-            <p className="">Preferred Department:</p>
-          </label>
-
-          <select
-            id="department"
-            name="department"
-            value={appointmentData.department}
-            onChange={handleFormValueChange}
-            className="w-full max-w-[400px] p-3 outline-none valid:bg-secondary-green rounded-lg mb-3 border-[1px] text-slate-800"
-          >
-            {departments.map((department) => (
-              <option key={department} value={department}>
-                {department}
-              </option>
-            ))}
-          </select>
-        </div>
+        <AppointmentForm
+          appointmentData={appointmentData}
+          handleFormValueChange={handleFormValueChange}
+        />
       )}
 
       {/* Chat Container Below */}
 
       {showChat && (
-        <div className="w-full max-w-[550px] mx-auto sm:mb-10 rounded-2xl shadow-xl flex flex-col justify-center h-[600px] overflow-x-hidden">
+        <div className="w-full max-w-[550px] mx-auto sm:mb-10 rounded-2xl shadow-xl flex flex-col justify-center h-[600px] overflow-x-hidden animate-fade-in">
           <section className="w-full bg-secondary-blue p-3 sm:p-6 flex justify-between">
             <div className="flex gap-4 items-center w-full">
               <img
@@ -308,7 +254,7 @@ const BookAppointmentPage = () => {
             <button
               type="button"
               disabled={userSentResponse || inputMessage.length < 4}
-              className={`flex items-center gap-2 text-xl font-bold text-white bg-primary-green p-3 rounded-lg hover:bg-opacity-85 cursor-pointer self-center disabled:cursor-not-allowed disabled:bg-opacity-40`}
+              className={`flex items-center gap-2 text-lg font-bold text-white bg-primary-green p-3 rounded-lg hover:bg-opacity-85 cursor-pointer self-center disabled:cursor-not-allowed disabled:bg-opacity-40`}
               onClick={() => {
                 handleSubmissionValidation();
               }}
@@ -320,43 +266,11 @@ const BookAppointmentPage = () => {
         </div>
       )}
 
-      <section className="w-full flex gap-4 max-w-[500px] mx-auto mb-5 font-medium">
-        {!showChat && (
-          <button
-            className="w-full p-3 rounded-lg bg-secondary-green text-slate-700 hover:bg-opacity-85"
-            onClick={() => navigate(-1)}
-          >
-            Cancel
-          </button>
-        )}
-
-        {!showChat && (
-          <button
-            className="w-full p-3 rounded-lg bg-primary-green text-white hover:bg-opacity-85"
-            onClick={() => setShowChat(true)}
-          >
-            Next
-          </button>
-        )}
-
-        {showChat && (
-          <button
-            className="w-full p-3 rounded-lg bg-secondary-green text-slate-700 hover:bg-opacity-85"
-            onClick={() => setShowChat(false)}
-          >
-            Back
-          </button>
-        )}
-
-        {showChat && (
-          <button
-            className="w-full p-3 rounded-lg bg-primary-green text-white hover:bg-opacity-85"
-            onClick={() => alert('Show Check Out here')}
-          >
-            Proceed to Check Out
-          </button>
-        )}
-      </section>
+      <AppointmentFormNav
+        showChat={showChat}
+        setShowChat={setShowChat}
+        appointmentData={appointmentData}
+      />
     </div>
   );
 };

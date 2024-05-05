@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { notifyError, notifySuccess } from '../ui/notifications';
 import { Link, useNavigate } from 'react-router-dom';
+import { TUserContext } from '../types/generalTypes';
+import { useSelector } from 'react-redux';
 
 type TFormData = {
   full_name: string;
@@ -29,6 +31,10 @@ const initialFormData: TFormData = {
 };
 
 const SignUpPage = () => {
+  const user: TUserContext | null = useSelector(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (state: any) => state?.user?.current
+  );
   const [formData, setFormData] = useState(initialFormData);
 
   // Form States
@@ -36,6 +42,11 @@ const SignUpPage = () => {
   const [formError, setFormError] = useState(false);
 
   const navigate = useNavigate();
+
+  if (user) {
+    navigate('/');
+    return;
+  }
 
   const handleFormValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (formLoading || formError) {

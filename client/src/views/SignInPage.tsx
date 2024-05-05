@@ -1,10 +1,11 @@
 // Implement the SignIn Page
 // Consider using Social Logins Too
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { notifyError, notifySuccess } from '../ui/notifications';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signInSuccess } from '../redux/slice/userSlice';
+import { TUserContext } from '../types/generalTypes';
 
 type TSignInFormData = {
   email: string;
@@ -19,6 +20,11 @@ const initialFormData: TSignInFormData = {
 };
 
 const SignInPage = () => {
+  const user: TUserContext | null = useSelector(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (state: any) => state?.user?.current
+  );
+
   const [formData, setFormData] = useState(initialFormData);
   // Form States
   const [formLoading, setFormLoading] = useState(false);
@@ -26,6 +32,13 @@ const SignInPage = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+      return;
+    }
+  }, [navigate, user]);
 
   const handleFormValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (formLoading || formError) {
@@ -62,11 +75,11 @@ const SignInPage = () => {
       // on Success
       const data = await response.json();
       dispatch(signInSuccess(data));
-      console.log(data);
 
       setFormLoading(false);
       notifySuccess('Login Successful! 😊');
       navigate('/');
+      return null;
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: { message: string } | any) {
@@ -74,7 +87,6 @@ const SignInPage = () => {
       setFormError(true);
       notifyError(error.message);
     }
-    // Perform Form Submission Action
   };
 
   return (

@@ -15,4 +15,7 @@ export default defineConfig({
     port: 5000,
     https: false,
   },
+  optimizeDeps: {
+    exclude: ['react-paystack'],
+  },
 });

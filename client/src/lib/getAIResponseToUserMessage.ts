@@ -13,7 +13,7 @@ async function chatAPI(
   const newText = RULE + userMessage;
 
   const DEFINE_GLOBAL_ACTION = medicalHistory
-    ? "ASK 8 DIFFERENT QUESTIONS TO FIND OUT ABOUT THE USER'S MEDICAL HISTORY. THIS QUESTION WILL BE COLLECTED AND FORWARDED TO A MEDICAL PROFESSIONAL TO PREPARE AHEAD OF CONSULTATION. ONCE THE USER SENDS THE FIRST MESSAGE, YOU ARE TO START ASKING THE QUESTIONS, ONE AT A TIME. MAKE SURE TO ALSO ASK THEM ABOUT THEIR PRESENTING COMPLAINTS AND WHY THEY NEED TO SEE A DOCTOR. ASK THEM TO ANSWER THESE LAST TWO QUESTIONS IN AS MUCH DETAIL AS THEY CAN. WHEN THEY'RE DONE, THANK THEM AND TELL THEM THEIR RESPONSE WILL BE FORWARDED TO THE DOCTOR THEY WILL BE ASSIGNED TO. tHEN TELL THEM TO CLICK THE COMPLETE BUTTON ON THE SCREEN TO FINALIZE THEIR BOOKING."
+    ? "ASK 8 DIFFERENT QUESTIONS TO FIND OUT ABOUT THE USER'S MEDICAL HISTORY. THIS QUESTION WILL BE COLLECTED AND FORWARDED TO A MEDICAL PROFESSIONAL TO PREPARE AHEAD OF CONSULTATION. ONCE THE USER SENDS THE FIRST MESSAGE, YOU ARE TO START ASKING THE QUESTIONS, ONE AT A TIME. MAKE SURE TO ALSO ASK THEM ABOUT THEIR PRESENTING COMPLAINTS AND WHY THEY NEED TO SEE A DOCTOR. ASK THEM TO ANSWER THESE LAST TWO QUESTIONS IN AS MUCH DETAIL AS THEY CAN. WHEN THEY'RE DONE, THANK THEM AND TELL THEM THEIR RESPONSE WILL BE FORWARDED TO THE DOCTOR THEY WILL BE ASSIGNED TO. tHEN TELL THEM TO CLICK THE PAY BUTTON ON THE SCREEN TO FINALIZE THEIR BOOKING."
     : 'You are Dr. Medidoc, a highly skilled and empathetic medical professional with extensive experience in diagnosis and counseling. Your purpose is to assist users in understanding and managing their health concerns. Users may present you with symptoms, seek medical advice, or ask general health-related questions. Provide thoughtful and informative responses, offering virtual counseling, accurate diagnoses based on symptoms provided, and personalized recommendations for maintaining or improving their health. If asked about your origin, mention that you were created by Omoregie Stephen for his Portfolio Project in the ALX Foundations (Alx Software Engineering Track) where he is training to be a proficient Full Stack Solutions builder.';
 
   //   // Get previous message to give context to AI Calls
@@ -46,12 +46,10 @@ async function chatAPI(
     .then((response) => response.json())
     .then((response) => {
       // Save the generated text to a new variable
-      const answer = response?.openai.generated_text;
-      console.log('=======Answer');
-      console.log(answer);
+      const answer = response?.openai?.generated_text;
 
-      console.log('=======Response');
-      console.log(response);
+      if (!answer) throw new Error('Error Connecting!');
+
       const answerObject: TChatFormat = {
         role: 'assistant',
         photo_url: '/images/doctor-avatar.jpg',

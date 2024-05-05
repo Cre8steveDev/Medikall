@@ -35,8 +35,15 @@ const localStrategy = new Strategy(
       // If the login details is correct,
       // pass the user object to the password verification function done
       // Pass only important details to the frontend in json
-      const { _id, full_name, profile_photo, genotype, blood_group, gender } =
-        checkUser;
+      const {
+        _id,
+        full_name,
+        profile_photo,
+        genotype,
+        blood_group,
+        gender,
+        email,
+      } = checkUser;
 
       done(null, {
         _id: _id.toString(),
@@ -45,6 +52,7 @@ const localStrategy = new Strategy(
         genotype,
         blood_group,
         gender,
+        email,
       });
 
       // Catching all errors

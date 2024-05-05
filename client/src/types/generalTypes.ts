@@ -22,6 +22,7 @@ export type TUserContext = {
   genotype: string;
   blood_group: string;
   gender: string;
+  email: string;
 };
 
 export type TChatFormat = {
@@ -36,4 +37,11 @@ export type TChatsList = {
   userId: string;
   title: string;
   messages: TChatFormat[];
+};
+
+export type TAppointmentData = {
+  occupation: string;
+  preferred_date: string;
+  department: string;
+  medical_history: TChatFormat[];
 };
