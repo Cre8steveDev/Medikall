@@ -11,7 +11,7 @@ const AppointmentForm = ({
   ) => void;
 }) => {
   return (
-    <div className="w-full max-w-[500px] mx-auto sm:mb-10 rounded-2xl shadow-xl flex flex-col justify-center items-center h-fit py-8 overflow-x-hidden animate-fade-in">
+    <div className="w-full max-w-[500px] mx-auto sm:mb-10 rounded-2xl shadow-xl flex flex-col justify-center items-center h-fit py-8 overflow-x-hidden animate-fade-in bg-white">
       <h2 className="text-2xl font-bold text-primary-blue">
         Let's Get you Started
       </h2>
@@ -48,7 +48,7 @@ const AppointmentForm = ({
         htmlFor="department"
         className="w-full max-w-[400px] p-2 text-slate-600"
       >
-        <p className="">Preferred Department:</p>
+        <p className="">Preferred Department (Optional):</p>
       </label>
 
       <select
@@ -59,7 +59,11 @@ const AppointmentForm = ({
         className="w-full max-w-[400px] p-3 outline-none valid:bg-secondary-green rounded-lg mb-3 border-[1px] text-slate-800"
       >
         {departments.map((department) => (
-          <option key={department} value={department}>
+          <option
+            key={department}
+            value={department}
+            className="leading-[150%]"
+          >
             {department}
           </option>
         ))}

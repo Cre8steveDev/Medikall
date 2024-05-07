@@ -1,4 +1,8 @@
-import { TChatsList, TServiceForCarousel } from '../types/generalTypes';
+import {
+  TAppointmentData,
+  TChatsList,
+  TServiceForCarousel,
+} from '../types/generalTypes';
 import { MdPhonelink } from 'react-icons/md';
 import { FaHospitalUser } from 'react-icons/fa6';
 import { AiOutlineMedicineBox } from 'react-icons/ai';
@@ -235,12 +239,25 @@ export const SampleChatsList: TChatsList[] = [];
 // ];
 
 export const departments = [
-  'Cardiology',
-  'Neurology',
-  'Orthopedics',
-  'Radiology',
+  '',
+  'Paediatrics',
+  'Medicine',
+  'Dermatology',
+  'Urology',
+  'Surgery',
+  'Dentistry',
+  'Eye Clinic',
+  'Obstetrics',
+  'Gynaecology',
 ];
 const today = new Date();
 export const dateString = `${today.getFullYear()}-${String(
   today.getMonth() + 1
 ).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+export const initialAppointmentData: TAppointmentData = {
+  occupation: '',
+  preferred_date: '',
+  department: '',
+  medical_history: [],
+};

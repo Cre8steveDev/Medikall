@@ -45,3 +45,13 @@ export type TAppointmentData = {
   department: string;
   medical_history: TChatFormat[];
 };
+
+export type TPaystackReference = {
+  message: string;
+  redirecturl: string;
+  reference: string;
+  status: string;
+  trans: string;
+  transaction: string;
+  trxref: string;
+};

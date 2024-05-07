@@ -19,6 +19,7 @@ import chatAPI from '../lib/getAIResponseToUserMessage';
 import { notifySuccess } from '../ui/notifications';
 import AppointmentForm from '../ui/AppointmentForm';
 import AppointmentFormNav from '../ui/AppointmentFormNav';
+import { initialAppointmentData } from '../lib/constants';
 
 /**
  * Represents Appointment Booking
@@ -33,17 +34,12 @@ const BookAppointmentPage = () => {
 
   const navigate = useNavigate();
 
-  const initialAppointmentData: TAppointmentData = {
-    occupation: '',
-    preferred_date: '',
-    department: '',
-    medical_history: [],
-  };
-
   const botWelcome: TChatFormat = {
     role: 'assistant',
     photo_url: '/images/doctor-avatar.jpg',
-    message: `Hello ${user?.full_name.split(' ')[0]}.`,
+    message: `Hello ${
+      user?.full_name.split(' ')[0]
+    }. Type Start to answer a few questions.`,
     date: `${new Date().toDateString()} | ${new Date().toLocaleTimeString()}`,
   };
 
@@ -94,7 +90,6 @@ const BookAppointmentPage = () => {
           return [...prev, aiResponseObject as TChatFormat];
         });
       }
-
       setLoadingResponse(false);
       setUserSentResponse(false);
     });
@@ -135,6 +130,7 @@ const BookAppointmentPage = () => {
       const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === 'Enter') {
           event.preventDefault();
+          setUserSentResponse(false);
           handleSubmissionValidation();
         }
       };
@@ -158,7 +154,7 @@ const BookAppointmentPage = () => {
 
   // Return JSX
   return (
-    <div className="flex flex-col w-full justify-center sm:mt-10 h-full items-center">
+    <div className="flex flex-col w-full justify-center pt-10 h-full items-center bg-slate-100">
       {/*  Simple Data Collection */}
 
       <section className="mx-auto flex gap-10 mb-5">
@@ -241,7 +237,7 @@ const BookAppointmentPage = () => {
           </div>
 
           {/* Input and Submit Button */}
-          <div className="w-full bg-white sm:h-[80px] py-3 px-3 md:px-8 flex justify-between gap-3">
+          <div className="w-full bg-white sm:h-[80px] py-2 px-3 md:px-8 flex justify-between gap-3">
             <input
               type="text"
               name="Message_Field"
@@ -249,12 +245,12 @@ const BookAppointmentPage = () => {
               placeholder="Type your message here..."
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              className="w-full outline-0 text-xs sm:text-lg text-slate-700"
+              className="w-full outline-0 text-xs sm:text-base text-slate-700"
             />
             <button
               type="button"
               disabled={userSentResponse || inputMessage.length < 4}
-              className={`flex items-center gap-2 text-lg font-bold text-white bg-primary-green p-3 rounded-lg hover:bg-opacity-85 cursor-pointer self-center disabled:cursor-not-allowed disabled:bg-opacity-40`}
+              className={`flex items-center gap-2 text-xs sm:text-base font-bold text-white bg-primary-green p-3 rounded-lg hover:bg-opacity-85 cursor-pointer self-center disabled:cursor-not-allowed disabled:bg-opacity-40`}
               onClick={() => {
                 handleSubmissionValidation();
               }}
@@ -270,6 +266,8 @@ const BookAppointmentPage = () => {
         showChat={showChat}
         setShowChat={setShowChat}
         appointmentData={appointmentData}
+        setChats={setChats}
+        setAppointmentData={setAppointmentData}
       />
     </div>
   );

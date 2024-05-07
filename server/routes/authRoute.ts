@@ -44,7 +44,7 @@ router.get('/status', (request, response) => {
 
 // Logout route
 router.get('/logout', (request, response) => {
-  if (!request.user) return response.sendStatus(401);
+  // if (!request.user) return response.sendStatus(401);
 
   // Call the logout function on the request
   request.logout((err) => {

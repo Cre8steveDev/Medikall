@@ -10,6 +10,7 @@ import passport from 'passport';
 
 // import Routers
 import authRouter from './routes/authRoute';
+import appointmentRouter from './routes/appointments';
 
 dotenv.config();
 
@@ -72,3 +73,4 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 app.use('/api/auth', authRouter);
+app.use('/api/appointment', appointmentRouter);
