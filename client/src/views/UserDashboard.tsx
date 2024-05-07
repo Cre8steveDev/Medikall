@@ -30,8 +30,8 @@ const UserDashboard = () => {
         <DashboardNavigation showTab={showTab} setShowTab={setShowTab} />
 
         {/* Tabbed Views */}
-        <section className="w-full flex gap-8 justify-center md:p-5">
-          <DashboardMiniSideBar user={user!} />
+        <section className="w-full flex flex-col sm:flex-row gap-8 justify-center md:p-5">
+          {showTab === 'overview' && <DashboardMiniSideBar user={user!} />}
 
           {/* Tabbed Component for Overview | Appointment | Edit Settings */}
           {showTab === 'overview' && <DashboardOverview />}

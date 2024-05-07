@@ -51,6 +51,7 @@ const AppointmentFormNav = ({
     // Send data to the backend
     fetch('/api/appointment/create', {
       method: 'post',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },

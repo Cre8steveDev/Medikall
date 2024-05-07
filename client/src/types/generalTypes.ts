@@ -55,3 +55,16 @@ export type TPaystackReference = {
   transaction: string;
   trxref: string;
 };
+
+export type TAppointmentTableList = {
+  department: string;
+  preferred_date: string;
+  status: 'Pending' | 'Approved' | 'Completed';
+  _id: string;
+};
+
+export type TOverviewProps = {
+  num_appointments: string;
+  num_chats: string;
+  recent_appointment: TAppointmentTableList;
+};

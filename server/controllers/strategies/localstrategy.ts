@@ -14,8 +14,28 @@ passport.deserializeUser(async (id, done) => {
 
     if (!checkUser) throw new Error('User Not Found!');
 
+    const {
+      _id,
+      full_name,
+      profile_photo,
+      genotype,
+      blood_group,
+      gender,
+      email,
+      appointments,
+    } = checkUser;
+
     // If id is a valid user, pass on to be authenticated
-    done(null, checkUser);
+    done(null, {
+      _id: _id.toString(),
+      full_name,
+      profile_photo,
+      genotype,
+      blood_group,
+      gender,
+      email,
+      appointments,
+    });
   } catch (error) {
     done(error, null);
   }
@@ -43,6 +63,7 @@ const localStrategy = new Strategy(
         blood_group,
         gender,
         email,
+        appointments,
       } = checkUser;
 
       done(null, {
@@ -53,6 +74,7 @@ const localStrategy = new Strategy(
         blood_group,
         gender,
         email,
+        appointments,
       });
 
       // Catching all errors

@@ -154,7 +154,7 @@ const BookAppointmentPage = () => {
 
   // Return JSX
   return (
-    <div className="flex flex-col w-full justify-center pt-10 h-full items-center bg-slate-100">
+    <div className="flex flex-col w-full justify-center pt-10 h-full items-center bg-slate-100 px-4 sm:px-0">
       {/*  Simple Data Collection */}
 
       <section className="mx-auto flex gap-10 mb-5">
@@ -184,7 +184,7 @@ const BookAppointmentPage = () => {
       {/* Chat Container Below */}
 
       {showChat && (
-        <div className="w-full max-w-[550px] mx-auto sm:mb-10 rounded-2xl shadow-xl flex flex-col justify-center h-[600px] overflow-x-hidden animate-fade-in">
+        <div className="w-full max-w-[550px] mx-auto sm:mb-10 rounded-2xl shadow-xl flex flex-col justify-center md:h-[600px] overflow-x-hidden animate-fade-in -mt-3 mb-3 sm:mt-0">
           <section className="w-full bg-secondary-blue p-3 sm:p-6 flex justify-between">
             <div className="flex gap-4 items-center w-full">
               <img

@@ -11,7 +11,7 @@ const AppointmentForm = ({
   ) => void;
 }) => {
   return (
-    <div className="w-full max-w-[500px] mx-auto sm:mb-10 rounded-2xl shadow-xl flex flex-col justify-center items-center h-fit py-8 overflow-x-hidden animate-fade-in bg-white">
+    <div className="w-full max-w-[500px] mx-auto mb-8 sm:mb-10 rounded-2xl shadow-xl flex flex-col justify-center items-center h-fit py-8 px-4 sm:px-0 overflow-x-hidden animate-fade-in bg-white">
       <h2 className="text-2xl font-bold text-primary-blue">
         Let's Get you Started
       </h2>

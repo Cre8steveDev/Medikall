@@ -6,8 +6,11 @@ import { TUserContext } from '../types/generalTypes';
  * @returns
  */
 const DashboardMiniSideBar = ({ user }: { user: TUserContext }) => {
+  if (!user) {
+    return;
+  }
   return (
-    <div className="p-3 mt-5 overflow-x-hidden transition ease-in rounded-lg bg-slate-100 hover:scale-[90%] cursor-default min-w-[300px] hidden sm:block self-start">
+    <div className="p-3 mt-5 overflow-x-hidden transition ease-in rounded-lg bg-slate-100 sm:hover:scale-[90%] cursor-default w-[80%] mx-auto sm:w-[300px] min-w-[300px]  self-start">
       <div className="flex flex-col items-center gap-3 text-base text-slate-500">
         <img
           src={user.profile_photo}
@@ -35,9 +38,9 @@ const DashboardMiniSideBar = ({ user }: { user: TUserContext }) => {
       </div>
 
       <div className="flex justify-center gap-2 p-2 -mt-1 text-sm text-center">
-        <Link to="/dashboard">
+        <Link to="/contact-us">
           <p className="w-full px-2 py-1 text-xs text-white rounded-lg cursor-pointer bg-primary-blue">
-            Edit Profile
+            Contact Support
           </p>
         </Link>
       </div>
