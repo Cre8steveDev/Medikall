@@ -22,6 +22,7 @@ export type TUserContext = {
   genotype: string;
   blood_group: string;
   gender: string;
+  email: string;
 };
 
 export type TChatFormat = {
@@ -29,4 +30,41 @@ export type TChatFormat = {
   message: string;
   date: string;
   photo_url: string;
+};
+
+export type TChatsList = {
+  _id: string;
+  userId: string;
+  title: string;
+  messages: TChatFormat[];
+};
+
+export type TAppointmentData = {
+  occupation: string;
+  preferred_date: string;
+  department: string;
+  medical_history: TChatFormat[];
+};
+
+export type TPaystackReference = {
+  message: string;
+  redirecturl: string;
+  reference: string;
+  status: string;
+  trans: string;
+  transaction: string;
+  trxref: string;
+};
+
+export type TAppointmentTableList = {
+  department: string;
+  preferred_date: string;
+  status: 'Pending' | 'Approved' | 'Completed';
+  _id: string;
+};
+
+export type TOverviewProps = {
+  num_appointments: string;
+  num_chats: string;
+  recent_appointment: TAppointmentTableList;
 };

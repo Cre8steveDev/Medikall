@@ -6,7 +6,7 @@ const LoadingBotResponse = () => {
         alt="Medidoc"
         className="w-[30px] md:w-[50px]rounded-full self-start"
       />
-      <div className="bg-primary-blue   p-5 rounded-xl text-white shadow-lg animate-pulse">
+      <div className="bg-primary-blue rounded-xl text-white shadow-lg animate-pulse sm:text-base text-xs p-3 sm:p-5">
         <p>Generating response...</p>
       </div>
     </div>

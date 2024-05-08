@@ -10,13 +10,15 @@ import passport from 'passport';
 
 // import Routers
 import authRouter from './routes/authRoute';
+import appointmentRouter from './routes/appointments';
+import dashboardRouter from './routes/getDashboardStats';
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const secret = process.env.COOKIE_SECRET || 'u9hiafodhpaschaposuidf';
-const session_secret = process.env.SESSION_SECRET || 'DQ9E8RQWE98xxRQW8ER';
+const secret = process.env.COOKIE_SECRET;
+const session_secret = process.env.SESSION_SECRET;
 
 // Register middlewares on the app instance
 app.use(cors());
@@ -27,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 // session middleware on the app instance
 app.use(
   session({
-    secret: session_secret,
+    secret: session_secret!,
     saveUninitialized: true,
     resave: false,
     cookie: { maxAge: 6000 * 7000 * 2 }, //almost 24 hours
@@ -61,10 +63,10 @@ async function connectDB() {
   }
 }
 
-// Call the Function
+/////////////////////////////////
+// Connect the Database and Start The Server on Success
 connectDB();
-
-// Try to insert into the models
+/////////////////////////////////
 
 // Define Routes on the app instance
 app.get('/health', (req: Request, res: Response) => {
@@ -72,3 +74,5 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 app.use('/api/auth', authRouter);
+app.use('/api/appointment', appointmentRouter);
+app.use('/api/dashboard', dashboardRouter);

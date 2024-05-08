@@ -12,7 +12,9 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <section className="p-5  mt-20 bg-gradient-to-r from-secondary-blue to-secondary-green">
+    <footer
+      className={`p-5  mt-20 bg-gradient-to-r from-secondary-blue to-secondary-green`}
+    >
       <SubscribeNewsletter />
 
       <div
@@ -20,7 +22,7 @@ const Footer = () => {
       >
         <div className="md:col-span-2 flex flex-col items-center md:items-start">
           <Logo />
-          <p className="md:my-3 text-gray-700 p-3 text-[16px] leading-normal text-center md:text-left">
+          <p className="md:my-3 text-gray-700 p-3 text-[12px] xs:text-[16px] leading-normal text-center md:text-left">
             Medikall is a Modern Web Application that aims to solve the often
             problem of crowded General Practic Clinks by offering clients a
             seamless platform to book appointments and provide doctors with a
@@ -34,7 +36,7 @@ const Footer = () => {
           <h2 className="font-bold text-lg text-slate-700">Company</h2>
           {FooterCompanyLinks.map((link) => (
             <Link to={link.link} key={link.link}>
-              <p className="my-2 cursor-pointer text-slate-600 hover:text-slate-900 transition ease-in hover:translate-x-2">
+              <p className="my-2 cursor-pointer text-slate-600 hover:text-slate-900 transition ease-in hover:translate-x-2 xs:text-[16px] text-[12px]">
                 {link.title}
               </p>
             </Link>
@@ -45,7 +47,7 @@ const Footer = () => {
           <h2 className="font-bold text-lg text-slate-700">Quick Links</h2>
           {FooterQuickLinks.map((link) => (
             <Link to={link.link} key={link.link}>
-              <p className="my-2 cursor-pointer text-slate-600 hover:text-slate-900 transition ease-in hover:translate-x-2">
+              <p className="my-2 cursor-pointer text-slate-600 hover:text-slate-900 transition ease-in hover:translate-x-2 xs:text-[16px] text-[12px]">
                 {link.title}
               </p>
             </Link>
@@ -56,23 +58,23 @@ const Footer = () => {
           <h2 className="font-bold text-lg text-slate-700 flex gap-2 items-center">
             <FaLocationDot className="hidden sm:block" /> Office Info
           </h2>
-          <p className=" mt-3">
+          <p className=" mt-3 xs:text-[16px] text-[12px]">
             41 Cre8Steve Office Complex, Edo State, Nigeria{' '}
           </p>
 
-          <p className="flex gap-3 mt-3 hover:text-primary-blue">
+          <p className="flex gap-3 mt-3 hover:text-primary-blue xs:text-[16px] text-[12px]">
             <a href="mailto:cre8stevedev@gmail.com">cre8stevedev @gmail.com</a>
           </p>
 
           <a href="tel:+2348174050194">
-            <p className="flex gap-3 items-center mt-3 hover:text-primary-blue">
+            <p className="flex gap-3 items-center mt-3 hover:text-primary-blue xs:text-[16px] text-[12px]">
               <FaPhoneSquareAlt className="hidden sm:block" /> (+234)
               8174-050194
             </p>
           </a>
         </div>
       </div>
-    </section>
+    </footer>
   );
 };
 
