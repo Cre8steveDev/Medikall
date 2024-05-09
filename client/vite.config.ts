@@ -13,7 +13,7 @@ export default defineConfig({
     },
     host: '0.0.0.0',
     port: 5000,
-    https: false,
+    // https: false,
   },
   // optimizeDeps: {
   //   exclude: ['react-paystack'],
