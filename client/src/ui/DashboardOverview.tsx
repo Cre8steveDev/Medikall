@@ -19,7 +19,7 @@ const DashboardOverview = () => {
 
   // Make Call on component mount
   useEffect(() => {
-    fetch('/api/dashboard/overview', {
+    fetch('https://medikall.onrender.com/api/dashboard/overview', {
       method: 'GET',
       credentials: 'include',
       headers: {

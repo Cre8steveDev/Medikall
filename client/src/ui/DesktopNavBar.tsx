@@ -13,7 +13,7 @@ const DesktopNavBar = ({ user }: { user: TUserContext | null }) => {
   const handleSignOut = async () => {
     // Implement signOut Logic
     try {
-      await fetch('/api/auth/logout', {
+      await fetch('https://medikall.onrender.com/api/auth/logout', {
         method: 'GET',
         credentials: 'include',
       });

@@ -80,13 +80,16 @@ const SignUpPage = () => {
         password: formData.password.trim(),
       };
       // on Success
-      const response = await fetch('/api/auth/signup', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cleanedData),
-      });
+      const response = await fetch(
+        'https://medikall.onrender.com/api/auth/signup',
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(cleanedData),
+        }
+      );
 
       if (response.status === 500) throw new Error('Connection Error. 🫠');
 
