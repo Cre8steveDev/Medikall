@@ -21,7 +21,12 @@ const secret = process.env.COOKIE_SECRET;
 const session_secret = process.env.SESSION_SECRET;
 
 // Register middlewares on the app instance
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://medikall.netlify.app',
+    credentials: true,
+  })
+);
 app.use(cookieParser(secret));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
