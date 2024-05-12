@@ -6,15 +6,17 @@ const router = Router();
 
 //////////Return Stats for the Dashboard Overview Section
 router.get('/overview', async (request: Request, response: Response) => {
-  const user = request.user as User | undefined;
+  const _user = request.user as User | undefined;
 
   console.log('Overview endpoint reached!');
   console.log('======================');
-  console.log(user);
+  console.log(_user);
+  console.log(request.user);
   console.log('======================');
 
-  if (user) {
+  if (request.user) {
     // Destructure details from user
+    const user = request.user as User;
     const { _id, appointments } = user;
     const recent_appointment_id = appointments[appointments.length - 1];
 
