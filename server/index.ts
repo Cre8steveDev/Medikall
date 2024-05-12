@@ -37,7 +37,7 @@ app.use(
     secret: session_secret!,
     saveUninitialized: true,
     resave: false,
-    cookie: { maxAge: 6000 * 7000 * 2 }, //almost 24 hours
+    cookie: { maxAge: 6000 * 7000 * 2, secure: true, sameSite: 'none' }, //almost 24 hours
   })
 );
 
