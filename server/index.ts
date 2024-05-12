@@ -21,13 +21,14 @@ const secret = process.env.COOKIE_SECRET;
 const session_secret = process.env.SESSION_SECRET;
 
 // Register middlewares on the app instance
+app.use(cookieParser(secret));
+
 app.use(
   cors({
     origin: 'https://medikall.netlify.app',
     credentials: true,
   })
 );
-app.use(cookieParser(secret));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -37,7 +38,7 @@ app.use(
     secret: session_secret!,
     saveUninitialized: true,
     resave: false,
-    cookie: { maxAge: 6000 * 7000 * 2, secure: true, sameSite: 'none' }, //almost 24 hours
+    cookie: { maxAge: 6000 * 7000 * 2, secure: false, sameSite: 'none' }, //almost 24 hours
   })
 );
 
