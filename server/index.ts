@@ -25,8 +25,9 @@ app.use(cookieParser(secret));
 
 app.use(
   cors({
-    origin: 'https://medikall.netlify.app',
+    origin: '*',
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
   })
 );
 app.use(express.json());
@@ -80,5 +81,5 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 app.use('/api/auth', authRouter);
-app.use('/api/appointment', appointmentRouter);
-app.use('/api/dashboard', dashboardRouter);
+app.use('/api/appointment', passport.authenticate('local'), appointmentRouter);
+app.use('/api/dashboard', passport.authenticate('local'), dashboardRouter);
