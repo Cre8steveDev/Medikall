@@ -24,23 +24,35 @@ const session_secret = process.env.SESSION_SECRET;
 // Register middlewares on the app instance
 app.use(cookieParser(secret));
 
-app.use(
-  cors({
-    origin: 'https://doc-medikall.onrender.com',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  })
-);
+// app.use(
+//   cors({
+//     origin: 'https://doc-medikall.onrender.com',
+//     credentials: true,
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   })
+// );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // session middleware on the app instance
+// app.use(
+//   session({
+//     secret: session_secret!,
+//     saveUninitialized: true,
+//     resave: false,
+//     cookie: { maxAge: 6000 * 7000 * 2, secure: true, sameSite: 'none' }, //almost 24 hours
+//   })
+// );
 app.use(
   session({
     secret: session_secret!,
     saveUninitialized: true,
     resave: false,
-    cookie: { maxAge: 6000 * 7000 * 2, secure: true, sameSite: 'none' }, //almost 24 hours
+    cookie: {
+      maxAge: 6000 * 7000 * 2,
+      secure: false, // set to false because your site is not served over HTTPS
+      sameSite: 'lax', // set to 'lax' or 'strict' because secure is false
+    },
   })
 );
 

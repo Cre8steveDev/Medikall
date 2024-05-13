@@ -16,7 +16,6 @@ const path_1 = __importDefault(require("path"));
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const cors_1 = __importDefault(require("cors"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 // import passport and session
 const express_session_1 = __importDefault(require("express-session"));
@@ -32,19 +31,33 @@ const secret = process.env.COOKIE_SECRET;
 const session_secret = process.env.SESSION_SECRET;
 // Register middlewares on the app instance
 app.use((0, cookie_parser_1.default)(secret));
-app.use((0, cors_1.default)({
-    origin: 'https://doc-medikall.onrender.com',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-}));
+// app.use(
+//   cors({
+//     origin: 'https://doc-medikall.onrender.com',
+//     credentials: true,
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   })
+// );
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 // session middleware on the app instance
+// app.use(
+//   session({
+//     secret: session_secret!,
+//     saveUninitialized: true,
+//     resave: false,
+//     cookie: { maxAge: 6000 * 7000 * 2, secure: true, sameSite: 'none' }, //almost 24 hours
+//   })
+// );
 app.use((0, express_session_1.default)({
     secret: session_secret,
     saveUninitialized: true,
     resave: false,
-    cookie: { maxAge: 6000 * 7000 * 2, secure: true, sameSite: 'none' }, //almost 24 hours
+    cookie: {
+        maxAge: 6000 * 7000 * 2,
+        secure: false, // set to false because your site is not served over HTTPS
+        sameSite: 'lax', // set to 'lax' or 'strict' because secure is false
+    },
 }));
 // Initialize passport on the app
 app.use(passport_1.default.initialize());
