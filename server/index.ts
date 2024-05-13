@@ -1,3 +1,4 @@
+import path from 'path';
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import mongoose, { ConnectOptions, Error } from 'mongoose';
@@ -83,3 +84,15 @@ app.get('/health', (req: Request, res: Response) => {
 app.use('/api/auth', authRouter);
 app.use('/api/appointment', passport.authenticate('local'), appointmentRouter);
 app.use('/api/dashboard', passport.authenticate('local'), dashboardRouter);
+
+if (process.env.NODE_ENV === 'production') {
+  const __dirname = path.resolve();
+  app.use(express.static(path.join(__dirname, '../client', 'dist')));
+
+  // Send your html which is the root for your react
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'))
+  );
+} else {
+  app.get('/', (req, res) => res.send('API is running'));
+}
