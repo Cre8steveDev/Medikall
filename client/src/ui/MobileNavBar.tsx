@@ -18,7 +18,7 @@ const MobileNavBar = ({ user }: { user: TUserContext | null }) => {
   const handleSignOut = async () => {
     // Implement signOut Logic
     try {
-      await fetch('https://medikall.onrender.com/api/auth/logout', {
+      await fetch('/api/auth/logout', {
         method: 'GET',
         credentials: 'include',
       });

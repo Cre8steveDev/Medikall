@@ -63,16 +63,13 @@ const SignInPage = () => {
         password: formData.password.trim(),
       };
 
-      const response = await fetch(
-        'https://medikall.onrender.com/api/auth/signin',
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(cleanedData),
-        }
-      );
+      const response = await fetch('/api/auth/signin', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cleanedData),
+      });
       if (response.status === 500) throw new Error('Connection Error. 🫠');
       if (!response.ok) throw new Error('Invalid Login Details');
       // on Success

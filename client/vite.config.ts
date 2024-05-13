@@ -7,12 +7,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://medikall.onrender.com',
+        target: 'http://localhost:3000',
         secure: false,
       },
     },
-    host: '0.0.0.0',
-    port: 5000,
+    // host: '0.0.0.0',
+    // port: 5000,
     // https: false,
   },
   // optimizeDeps: {

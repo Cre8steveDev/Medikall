@@ -49,7 +49,7 @@ const AppointmentFormNav = ({
     // console.log(reference);
 
     // Send data to the backend
-    fetch('https://medikall.onrender.com/api/appointment/create', {
+    fetch('/api/appointment/create', {
       method: 'post',
       credentials: 'include',
       headers: {

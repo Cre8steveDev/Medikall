@@ -20,7 +20,7 @@ const DashboardAppointment = () => {
   // Load data on component load
 
   useEffect(() => {
-    fetch('https://medikall.onrender.com/api/dashboard/appointments', {
+    fetch('/api/dashboard/appointments', {
       method: 'GET',
       credentials: 'include',
       headers: {
