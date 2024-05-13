@@ -94,8 +94,8 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 app.use('/api/auth', authRouter);
-app.use('/api/appointment', passport.authenticate('local'), appointmentRouter);
-app.use('/api/dashboard', passport.authenticate('local'), dashboardRouter);
+app.use('/api/appointment', appointmentRouter);
+app.use('/api/dashboard', dashboardRouter);
 
 if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();

@@ -93,8 +93,8 @@ app.get('/health', (req, res) => {
     res.send('Yuuup! Server still up and running 😄');
 });
 app.use('/api/auth', authRoute_1.default);
-app.use('/api/appointment', passport_1.default.authenticate('local'), appointments_1.default);
-app.use('/api/dashboard', passport_1.default.authenticate('local'), getDashboardStats_1.default);
+app.use('/api/appointment', appointments_1.default);
+app.use('/api/dashboard', getDashboardStats_1.default);
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path_1.default.resolve();
     app.use(express_1.default.static(path_1.default.join(__dirname, '../client', 'dist')));
