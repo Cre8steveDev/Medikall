@@ -25,7 +25,7 @@ app.use(cookieParser(secret));
 
 app.use(
   cors({
-    origin: '*',
+    origin: 'https://doc-medikall.onrender.com/',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   })
@@ -39,7 +39,7 @@ app.use(
     secret: session_secret!,
     saveUninitialized: true,
     resave: false,
-    cookie: { maxAge: 6000 * 7000 * 2, secure: false, sameSite: 'none' }, //almost 24 hours
+    cookie: { maxAge: 6000 * 7000 * 2, secure: true, sameSite: 'none' }, //almost 24 hours
   })
 );
 
