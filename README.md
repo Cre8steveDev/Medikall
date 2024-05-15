@@ -45,7 +45,7 @@ To enhance the maintainability and reliability of the codebase, I utilized TypeS
 
 For storing and managing data in Medikall, I opted for MongoDB, a popular NoSQL database solution. MongoDB offers a flexible and scalable approach to handle structured and unstructured data. It provides a document-oriented data model, which allowed me to store data in JSON-like documents. By using MongoDB, I was able to efficiently store and retrieve data for the Medikall application. Additionally, MongoDB's support for horizontal scaling and replication made it a suitable choice for handling the potential growth of the system.
 
-These technologies, namely PassportJS for user authentication, TypeScript for type safety, and MongoDB for the remote database solution, played a crucial role in the development of Medikall, ensuring its security, reliability, and scalability.
+These technologies, namely PassportJS for user authentication, TypeScript for type safety, and MongoDB Atlas for the remote database solution, played a crucial role in the development of Medikall, ensuring its security, reliability, and scalability.
 
 ## License
 
