@@ -1,4 +1,7 @@
-// Definition for the Footer Page
+/**
+ * The Footer Component that is rendered on the Global Layout
+ */
+
 import Logo from '../ui/Logo';
 import { FooterCompanyLinks, FooterQuickLinks } from '../lib/constants';
 
@@ -10,7 +13,12 @@ import SubscribeNewsletter from '../ui/SubscribeNewsletter';
 import SocialLinks from '../ui/SocialLinks';
 import { Link } from 'react-router-dom';
 
-const Footer = () => {
+/**
+ * Footer Component Definition
+ * @returns {JSX.Element}
+ */
+
+const Footer = (): JSX.Element => {
   return (
     <footer
       className={`p-5  mt-20 bg-gradient-to-r from-secondary-blue to-secondary-green`}

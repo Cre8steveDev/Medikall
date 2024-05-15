@@ -1,6 +1,12 @@
-// Function that sends user's response to the eden API
-// Interacting with the OpenAI ChatGTP API to simulate conversation
 import { TChatFormat } from '../types/generalTypes';
+
+/**
+ * Sends user's response to the eden API and interacts with the OpenAI ChatGTP API to simulate conversation.
+ * @param userMessage - The user's message.
+ * @param prevChats - An array of previous chat messages.
+ * @param medicalHistory - A boolean indicating whether the medical history is required.
+ * @returns A promise that resolves to a chat format object or null.
+ */
 
 async function chatAPI(
   userMessage: string,
