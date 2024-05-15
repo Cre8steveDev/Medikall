@@ -1,3 +1,4 @@
+// Hehe - This was just done during development
 const handleCheckStatus = async (
   e: React.MouseEventHandler<HTMLButtonElement>
 ) => {

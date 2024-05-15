@@ -1,3 +1,7 @@
+/**
+ * The Header Component Function
+ */
+
 import DesktopNavBar from '../ui/DesktopNavBar';
 
 import { maxWidthClassSettings } from '../lib/constants';
@@ -8,9 +12,11 @@ import MobileNavBar from '../ui/MobileNavBar';
 import { useSelector } from 'react-redux';
 import { TUserContext } from '../types/generalTypes';
 
-// Definition for the Header Component
-
-const Header = () => {
+/**
+ * Header Function Definition
+ * @returns {JSX.Element}
+ */
+const Header = (): JSX.Element => {
   // Retrieve User from Context
   const userCurrent: TUserContext | null = useSelector(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,11 +42,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// import { useSelector } from 'react-redux';
-// import { TUserContext } from '../types/generalTypes';
-
-// const userCurrent: TUserContext | null = useSelector(
-//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//   (state: any) => state?.user?.current
-// );

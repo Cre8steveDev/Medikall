@@ -1,5 +1,8 @@
-// Implement the SignIn Page
-// Consider using Social Logins Too
+/**
+ * Sign Up Page Layout with Logic for communicating with the
+ * backend to sign in a user
+ */
+
 import { useState } from 'react';
 import { notifyError, notifySuccess } from '../ui/notifications';
 import { Link, useNavigate } from 'react-router-dom';
@@ -30,7 +33,11 @@ const initialFormData: TFormData = {
   confirm_password: '',
 };
 
-const SignUpPage = () => {
+/**
+ * Sign Up Component
+ * @returns {JSX.Element | void}
+ */
+const SignUpPage = (): JSX.Element | void => {
   const user: TUserContext | null = useSelector(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: any) => state?.user?.current

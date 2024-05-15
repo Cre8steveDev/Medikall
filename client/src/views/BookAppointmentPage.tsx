@@ -1,4 +1,8 @@
-// Book Appointment Page Component
+/**
+ * Represents Appointment Booking
+ * This component handles the workflow for booking an appointment on the front end.
+ */
+
 import { MdAutoDelete } from 'react-icons/md';
 import { IoSendSharp } from 'react-icons/io5';
 import {
@@ -22,11 +26,11 @@ import AppointmentFormNav from '../ui/AppointmentFormNav';
 import { initialAppointmentData } from '../lib/constants';
 
 /**
- * Represents Appointment Booking
- * This component for the workflow for booking an appointment on the front end
+ * The Book Appointment Component
+ * @returns {JSX.Element}
  */
 
-const BookAppointmentPage = () => {
+const BookAppointmentPage = (): JSX.Element => {
   const user: TUserContext | null = useSelector(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: any) => state?.user?.current
@@ -57,7 +61,9 @@ const BookAppointmentPage = () => {
     initialAppointmentData
   );
 
-  //  Clear current chat session
+  /**
+   * Clears the current chat session
+   */
   const handleClearChat = () => {
     setChats([botWelcome]);
     notifySuccess('Your Current Chatting Session has been cleared.');
@@ -108,15 +114,22 @@ const BookAppointmentPage = () => {
     });
   }, [chats]);
 
-  // handle verification of user submitting entry
-  const handleSubmissionValidation = () => {
+  /**
+   * handle verification of user submitting entry
+   * @returns {void}
+   */
+  const handleSubmissionValidation = (): void => {
     if (userSentResponse) return;
     setUserSentResponse(true);
   };
 
+  /**
+   * Handle Form Value Changes and updates state
+   * @returns {void}
+   */
   const handleFormValueChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  ): void => {
     setAppointmentData((prev_data) => {
       return { ...prev_data, [e.target.name]: e.target.value };
     });

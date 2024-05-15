@@ -2,7 +2,11 @@ import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const GeneralLayout = () => {
+/**
+ * The Generate Layout shared across all routes
+ * @returns {JSX.Element}
+ */
+const GeneralLayout = (): JSX.Element => {
   return (
     <div>
       {/* Let's have our Header here!!!  */}

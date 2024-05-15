@@ -1,3 +1,8 @@
+/**
+ * Entry point of the Medikall application.
+ * Renders the root component and sets up Redux store and routing.
+ */
+
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';

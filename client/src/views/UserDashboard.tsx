@@ -1,3 +1,9 @@
+/**
+ * User DashBoard Component that has various informatino
+ * About Overview, All Appointments and Settings
+ * to update profile et al
+ */
+
 import { useSelector } from 'react-redux';
 import { maxWidthClassSettings } from '../lib/constants';
 import { TUserContext } from '../types/generalTypes';
@@ -9,8 +15,10 @@ import { useState } from 'react';
 import DashboardSetting from '../ui/DashboardSetting';
 import DashboardAppointment from '../ui/DashboardAppointment';
 
-// User DashBoard
-
+/**
+ * User Dashboard Component
+ * @returns {JSX.Element}
+ */
 const UserDashboard = () => {
   const user: TUserContext | null = useSelector(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,5 +1,11 @@
 import { TChatFormat } from '../types/generalTypes';
 
+/**
+ * Handles the user's sent message and updates the chats array.
+ *
+ * @param message {string} - The message sent by the user.
+ * @param updateChatsArray - The function to update the chats array.
+ */
 const handleUserSendMessage = (
   message: string,
   updateChatsArray: React.Dispatch<React.SetStateAction<TChatFormat[]>>

@@ -1,5 +1,9 @@
-// Main App Where everything comes together
-// Define the App Router Here
+/**
+ * The main component of the application.
+ * Renders the routes and corresponding components based on the URL path.
+ *
+ * @returns The rendered application component.
+ */
 
 import { Routes, Route } from 'react-router-dom';
 import GeneralLayout from './views/GeneralLayout';

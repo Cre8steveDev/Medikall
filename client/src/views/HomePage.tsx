@@ -3,8 +3,12 @@ import HeroSection from '../ui/HeroSection';
 import OurServiceOfferings from '../ui/OurServiceOfferings';
 import AboutUsSection from '../ui/AboutUsSection';
 
-// Define Home View on load
-const HomePage = () => {
+/**
+ * The Home Page Component that renders
+ * Components required on the home screen of the app
+ * @returns {JSX.Element}
+ */
+const HomePage = (): JSX.Element => {
   return (
     <section className="w-full">
       <HeroSection />
